@@ -14,8 +14,17 @@ typedef struct stack {
     int top;
 } Stack;
 
+
 void PreOrderTraverseRecurssive(BinaryTree *root)
-{}
+{
+    if (root == NULL) {
+        return;
+    }
+    printf("%d ", root->val);
+    PreOrderTraverseRecurssive(root->left);
+    PreOrderTraverseRecurssive(root->right);
+    return;
+}
 
 void InOrderTraverseRecurssive(BinaryTree *root)
 {
@@ -29,10 +38,34 @@ void InOrderTraverseRecurssive(BinaryTree *root)
 }
 
 void PostOrderTraverseRecurssive(BinaryTree *root)
-{}
-
+{
+    if (root == NULL) {
+        return;
+    }
+    PostOrderTraverseRecurssive(root->left);
+    PostOrderTraverseRecurssive(root->right);
+    printf("%d ", root->val);
+    return;
+}
+        
 void PreOrderTraverseNonRecurssive(BinaryTree *root)
-{}
+{
+    if (root == NULL) {
+        return；
+    }
+    Stack s = {0};
+    s.values[s.top++] = root->val;
+    while (s.top > 0) {
+        printf("%d ", s.values[--s.top]);
+        if (root->left) {
+            s.values[s.top++] = root->left->val;
+        }
+        if (root->right) {
+            s.values[s.top++] = root->right->val;
+        }
+    }
+    return;
+}
 
 void InOrderTraverseNonRecurssive(BinaryTree *root)
 {
